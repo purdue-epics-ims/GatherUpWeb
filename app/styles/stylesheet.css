@@ -1,0 +1,132 @@
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#back{
+    position:fixed;
+    top:0;
+    left:0;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+p{
+    background : white:
+    font-size : 20px;
+    color : black;
+}
+
+.box{
+    width: 40%;
+    height: 50%;
+    border: 2px solid black;
+    background-color: white;
+    position: fixed;
+    left: 32%;
+    top: 25%;
+    font-size:70%;
+}
+
+
+#Username{
+    background-color: white;
+    position: absolute;
+    left: 25%;
+    top: 38%;
+    width: 50%;
+    height: 10%;
+    
+    opacity:1;
+}
+
+#Password{
+    background-color: white;
+    position: absolute;
+    left: 25%;
+    top: 53%;
+    width: 50%;
+    height: 10%;
+}
+
+.login{
+    background: linear-gradient (left, grey,black);
+    height: 7%;
+    width: 15%;
+    position: absolute;
+    left:43%;
+    top:70%;
+    text-align: center;
+    line-height: 2;
+    font-size: 110%;
+    border-style: groove;
+    border-width: medium;
+}
+
+#purdue-ip{
+    width:100%;
+    height: 29%;
+    position:relative;
+}
+
+.forgot_password{
+    position:absolute;
+    bottom:10%;
+    left: 15%;
+}
+
+
+.register{
+    position:absolute;
+    bottom:10%;
+    left: 70%;
+}
+
+#thankyou{
+	position:absolute;
+	top: 5%;
+	left: 25%;
+	font-size: 50px;
+}
+
+#gettingpassword{
+	position: relative;
+	top: 25%;
+	left: 20%;
+}
+
+#passwordinfo{
+	position: absolute;
+	top: 25%;
+	left: 25%;
+}
+
+#Pin{
+    background-color: white;
+    position: absolute;
+    left: 25%;
+    top: 68%;
+    width: 50%;
+    height: 10%;
+}
+
+
+.reglogin{
+    background: linear-gradient (left, grey,black);
+    height: 7%;
+    width: 15%;
+    position: absolute;
+    left:43%;
+    top:85%;
+    text-align: center;
+    line-height: 2;
+    font-size: 110%;
+    border-style: groove;
+    border-width: medium;
+}
+
+
+
+/**For Page 2**/
+

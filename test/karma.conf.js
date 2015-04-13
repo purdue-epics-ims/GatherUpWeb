@@ -1,6 +1,6 @@
 // Karma configuration
 // http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2015-03-02 using
+// Generated on 2015-04-13 using
 // generator-karma 0.9.0
 
 module.exports = function(config) {
@@ -19,17 +19,16 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'app/components/jquery/dist/jquery.js',
-      'app/components/angular/angular.js',
-      'app/components/bootstrap/dist/js/bootstrap.js',
-      'app/components/angular-animate/angular-animate.js',
-      'app/components/angular-cookies/angular-cookies.js',
-      'app/components/angular-resource/angular-resource.js',
-      'app/components/angular-route/angular-route.js',
-      'app/components/angular-sanitize/angular-sanitize.js',
-      'app/components/angular-touch/angular-touch.js',
-      'app/components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'app/components/angular-mocks/angular-mocks.js',
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/angular/angular.js',
+      'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-cookies/angular-cookies.js',
+      'bower_components/angular-resource/angular-resource.js',
+      'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-touch/angular-touch.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

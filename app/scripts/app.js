@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name gatherUpApp
+ * @name krinaApp
  * @description
- * # gatherUpApp
+ * # krinaApp
  *
  * Main module of the application.
  */
 angular
-  .module('gatherUpApp', [
+  .module('krinaApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
