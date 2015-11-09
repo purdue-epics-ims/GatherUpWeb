@@ -1,7 +1,7 @@
         <div class = "box">
         	<img  id = "purdue-ip" src ="images\purdue-ip.png" alt= "Purdue - International Programs">
-            <input type = "text" class="textbox" id = "Username" placeholder ="Username"/>
-            <input type = "password" type = "text" class="textbox" id = "Password" placeholder ="Password"/>
-            <div class = "login"><input type = "submit" id = "loginpagesubmit" value = "Login"></div>
+            <input ng-model = "email" type = "text" class="textbox" id = "email" placeholder ="Email"/>
+            <input ng-model = "password" type = "text" type = "text" class="textbox" id = "password" placeholder ="Password"/>
+            <div class = "login"><input ng-click = "login()" type = "submit" id = "loginpagesubmit" value = "Login"></div>
             <div class = "forgot_password"><a href="passwordpage.html">Forgot Password ?</a></div>
         </div>
