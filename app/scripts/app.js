@@ -31,6 +31,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/culture', {
+        templateUrl: 'views/culture.html',
+        controller: 'CultureCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

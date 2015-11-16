@@ -16,10 +16,10 @@ angular.module('krinaApp')
     	"password": $scope.password
     }, function(error, authData) {
     	if (error) {
-    		console.log("Login Failed!", error);
+    		window.alert("Login failed, please enter a valid username and password!", error);
     	} else{
     		console.log("Authenticated successfully!", authData);
-    		//Redirect to main page here
+        window.location="http://localhost:9000/#/"
     	}
     });
   };
