@@ -1,3 +1,4 @@
+<!doctype html>
 <div class = "culturebox">
         <p><div id = "cultureheader">Add an Event</p>
         <input ng-model = "eventname" type = "text" class="textbox" id = "eventnametextbox" placeholder ="Name of Event"/>
@@ -5,5 +6,28 @@
         <div class = "submitevent"><input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit"></div>
 </div>
 <div class = "culturebox" id = "culturebox2">
-        <p><div id = "culturelistheader">Current List of Events</div></p>
+        <p><div id = "culturelistheader">Current List of Events0</div></p>
+        <p><div id = "culturelistheader">Current List of Events1</div></p>
+
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	    <script>
+	      var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
+
+	      myDataRef.on('child_added', function(snapshot) {
+	        var eventMessage = snapshot.val();
+	        displayChatMessage(eventMessage.name, eventMessage.description);
+	      });
+	      function displayChatMessage(name, text) {
+	      	// ADD YOUR CODE HERE HERRY
+	      	// this part should be a 'one line code' look for videos on how this can be done
+	      	// contant me if you have anyquestion
+	      	// below is the code you can use for testing with the databases
+	      	
+	      	// document.write('<br>'+name+'</br>');
+	      	// document.write('<br>'+text+'</br>');
+
+	      };
+   		 </script>
+    <p><div id = "culturelistheader">Current List of Events2</div></p>
 </div>
