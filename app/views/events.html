@@ -5,6 +5,7 @@
         <input ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
         <div class = "submitevent"><input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit"></div>
 </div>
+<!-->I add a scroll here to prevent overflow<-->
 <div class = "culturebox" id = "culturebox2">
         <p><div id = "culturelistheader">Current List of Events0</div></p>
         <p><div id = "culturelistheader">Current List of Events1</div></p>
@@ -23,7 +24,14 @@
 	      	// this part should be a 'one line code' look for videos on how this can be done
 	      	// contant me if you have anyquestion
 	      	// below is the code you can use for testing with the databases
-	      	
+	      	var tr = document.getElementById("culturelistheader0");
+          var td1 = document.createElement("tr");
+          td1.innerHTML = "<span style='font-size:22px; color:white;'>"+name+"</span>";
+          var td2 = document.createElement("tr");
+          td2.innerHTML = "<span style='font-size:20px; color:red;'>"+text+"</span>";
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          
 	      	// document.write('<br>'+name+'</br>');
 	      	// document.write('<br>'+text+'</br>');
 
