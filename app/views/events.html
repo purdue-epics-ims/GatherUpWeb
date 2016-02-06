@@ -4,6 +4,52 @@
         <input ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
         <div class = "submitevent"><input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit"></div>
 </div>
-<div class = "culturebox" id = "culturebox2">
+    <div class = "culturebox" id = "culturebox2" style="height:500px; width:1000px; overflow:auto">
         <p><div id = "culturelistheader">Current List of Events</div></p>
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+        <script>
+          var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
+          myDataRef.on('child_added', function(snapshot) {
+            var eventMessage = snapshot.val();
+            displayChatMessage(eventMessage.name, eventMessage.description, snapshot.name());
+            deleteEvent("-K9OsyQpwUBFAljW9PLa"); //used for testing deleting a single event
+          });
+          function displayChatMessage(name, text, eventID) {
+            var tr = document.getElementById("culturelistheader");
+              var td1 = document.createElement("tr");
+              var td2 = document.createElement("tr");
+              var td3 = document.createElement("tr");
+              td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
+              "<button name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>";
+              // the above line adds a button that stand for "delete this event"
+              // the button is currently not linked to the actual delete function, your job is to establish this link
+              // more specificlly, call the "deleteEvent(eventID)" function below
+              td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>";
+              td3.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Event ID: </span> <span style='font-size:20px; color:black;'> "+eventID+"</span></div>";
+              // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
+              // this is needed because its the only way to identify what event to delete  in firebase
+              // you don't need to output the eventID, just somehow link this to delete button above, so system knows what to delete when the button is clicked
+              tr.appendChild(td1);
+              tr.appendChild(td2);
+              tr.appendChild(td3);
+          };
+          // call this function for deleting a single event with "eventID" in firebase
+          function deleteEvent(eventID){
+              var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
+              var deletingRef = new Firebase(address);
+          var onComplete = function(error) {
+            if (error) {
+            //  console.log('Synchronization failed');
+            //  if needed
+            // add code here for a failed delete (this should never happend for now)
+            } else {
+            //  console.log('Synchronization succeeded');
+            //  if needed
+            //  add code here for a success delete
+            }
+          };
+          deletingRef.remove(onComplete);
+          };
+         </script>
 </div>
