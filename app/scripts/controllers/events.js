@@ -17,9 +17,9 @@ angular.module('krinaApp')
       return v.toString(16);
     })};
     var eventObject = {
-      "id": createGuid(),
       "name": $scope.eventname,
       "description": $scope.eventdescription,
+      "date": $scope.eventdate.toDateString(),
       "schema": "event"
     }
     myEventRef.push(eventObject);

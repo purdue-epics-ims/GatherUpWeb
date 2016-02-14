@@ -13,24 +13,26 @@
         var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
         myDataRef.on('child_added', function(snapshot) {
         var eventMessage = snapshot.val();
-        displayChatMessage(eventMessage.name, eventMessage.description, snapshot.name());
+        displayChatMessage(eventMessage.name, eventMessage.description, eventMessage.date, snapshot.name());
       // deleteEvent("-K9OsyQpwUBFAljW9PLa"); //used for testing deleting a single event
       });
 
 
-      function displayChatMessage(name, text, eventID) {
+      function displayChatMessage(name, text, date, eventID) {
         var tr = document.getElementById("culturelistheader");
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
       //    var td3 = document.createElement("tr");
           td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
-          "<button onclick='testCall(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button></div>";
+          "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" + 
+          "<button onclick='updateCall(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
 
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
           // more specificlly, call the "deleteEvent(eventID)" function below
 
-          td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>";
+          td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
+         				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+date+"</span></div>";
         //  td3.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Event ID: </span> <span style='font-size:20px; color:white;'> "+eventID+"</span></div>";
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
@@ -43,7 +45,7 @@
 
 
       // call this function for deleting a single event with "eventID" in firebase
-      function testCall(eventID) {
+      function deleteEvent(eventID) {
         var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
         var deletingRef = new Firebase(address);
         //alrt("Read Successful");
@@ -65,29 +67,22 @@
         //alert("Second one");
       };
 
+      function updateCall(eventID) {
 
-
-      function deleteEvent(eventID) {
-
-          alert("Call Successful "+eventID);
-          var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
-          var deletingRef = new Firebase(address);
+      	var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
+      	var updatingRef = new Firebase(address);
           //alrt("Read Successful");
-          var onComplete = function(error) {
-            if (error) {
-            //  console.log('Synchronization failed');
-            //  if needed
-            // add code here for a failed delete (this should never happend for now)
-
-            } else {
-            //  console.log('Synchronization succeeded');
-            //  if needed
-            //  add code here for a success delete
-                alert("Delete Successful");
-
-            }
-          };
-          deletingRef.remove(onComplete);
+         
+      	var onComplete = function(error) {
+	  	if (error) {
+			    
+			} else {
+			    alert("Update Successful");
+			    location.reload();
+			}
+		};
+		updatingRef.update({ description: 'UPDATE DESCRIPTION TEST '+eventID }, onComplete);
+		//pdatingRef.update({ name: 'UPDATE NAME TEST', description: 'UPDATE DESCRIPTION TEST '+eventID }, onComplete);
       };
 
       </script>
