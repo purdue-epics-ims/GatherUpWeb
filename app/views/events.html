@@ -48,9 +48,12 @@
         //  tr.appendChild(td3);
       };
 
-
-      // call this function for deleting a single event with "eventID" in firebase
       function deleteEvent(eventID) {
+
+        if (confirm('Are you sure you want to delete?')) {
+            // Save it!
+
+
         var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
         var deletingRef = new Firebase(address);
         var onComplete = function(error) {
@@ -68,11 +71,15 @@
           }
         };
         deletingRef.remove(onComplete);
+      } else {
+          // Do nothing!
+      }
       };
 
       //Get eventID from a hidden input bar now.
       //The function will extract data from the input bar for update.
       function updateCall() {
+
         var eventID = document.getElementById("tempID").value;
       	var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
       	var updatingRef = new Firebase(address);
