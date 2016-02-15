@@ -3,7 +3,15 @@
         <input ng-model = "eventname" type = "text" class="textbox" id = "eventnametextbox" placeholder ="Name of Event"/>
         <input ng-model = "eventdate" type = "date" id = "eventdatebox"/>
         <textarea ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
-        <div class = "submitevent"><input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit"></div>
+        <div class = "submitevent">
+          <input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit">
+          <input type = "button" style = "display:none" value = "Save" id = "eventSave" onclick="updateCall()">
+          <input type = "button" style = "display:none" value = "Discard" id = "eventDiscard" onclick="updateDiscard()">
+          <!--Here come the new buttons, and they are hidden at first><-->
+          <input style="display:none" id = "tempID">
+          <!--ID storage for update><-->
+        </div>
+
 </div>
     <div class = "culturebox" id = "culturebox2" style="height:500px; width:1000px; overflow:auto">
         <p><div id = "culturelistheader">Current List of Events</div></p>
@@ -14,7 +22,6 @@
         myDataRef.on('child_added', function(snapshot) {
         var eventMessage = snapshot.val();
         displayChatMessage(eventMessage.name, eventMessage.description, eventMessage.date, snapshot.name());
-      // deleteEvent("-K9OsyQpwUBFAljW9PLa"); //used for testing deleting a single event
       });
 
 
@@ -22,10 +29,9 @@
         var tr = document.getElementById("culturelistheader");
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
-      //    var td3 = document.createElement("tr");
           td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
-          "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" + 
-          "<button onclick='updateCall(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
+          "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
+          "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
 
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
@@ -33,10 +39,9 @@
 
           td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
          				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+date+"</span></div>";
-        //  td3.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Event ID: </span> <span style='font-size:20px; color:white;'> "+eventID+"</span></div>";
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
-          // you don't need to output the eventID, just somehow link this to delete button above, so system knows what to delete when the button is clicked
+
 
           tr.appendChild(td1);
           tr.appendChild(td2);
@@ -48,7 +53,6 @@
       function deleteEvent(eventID) {
         var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
         var deletingRef = new Firebase(address);
-        //alrt("Read Successful");
         var onComplete = function(error) {
           if (error) {
           //  console.log('Synchronization failed');
@@ -64,32 +68,84 @@
           }
         };
         deletingRef.remove(onComplete);
-        //alert("Second one");
       };
 
-      function updateCall(eventID) {
-
+      //Get eventID from a hidden input bar now.
+      //The function will extract data from the input bar for update.
+      function updateCall() {
+        var eventID = document.getElementById("tempID").value;
       	var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
       	var updatingRef = new Firebase(address);
           //alrt("Read Successful");
-         
+
       	var onComplete = function(error) {
 	  	if (error) {
-			    
+
 			} else {
 			    alert("Update Successful");
 			    location.reload();
 			}
 		};
-		
-		updatingRef.update({ description: 'UPDATE DESCRIPTION TEST '+eventID }, onComplete);
+    var updateName = document.getElementById("eventnametextbox").value;
+    var updateDate = document.getElementById("eventdatebox").value;
+    var updateDes = document.getElementById("descriptiontextbox").value;
+
+		updatingRef.update({description: updateDes}, onComplete);
 		// here try to pull data from the text fields for update, replace the text after description and name for correspoding ones
-		// use below to allow name change as well
-		//pdatingRef.update({ name: 'UPDATE NAME TEST', description: 'UPDATE DESCRIPTION TEST '+eventID }, onComplete);
-
-
 
       };
+
+      //This is the function to hide the Sumbit button and show the Save and Discard button
+      //This will also extract data from Firebase and fill it in the input bar
+      function updateShow(eventID){
+        var btnSm = document.getElementById("eventpagesubmit");
+        var btnSv = document.getElementById("eventSave");
+        var btnDc = document.getElementById("eventDiscard");
+
+        btnSm.style.display = 'none';
+        btnSv.style.display = '';
+        btnDc.style.display = '';
+
+        var namebox = document.getElementById("eventnametextbox");
+        var datebox = document.getElementById("eventdatebox");
+        var desbox = document.getElementById("descriptiontextbox");
+
+        var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
+        var readingRef = new Firebase(address);
+
+        readingRef.on('value',function(snapshot) {
+        var eventInfo = snapshot.val();
+        namebox.value = eventInfo.name;
+        desbox.value = eventInfo.description;
+        datebox.value = eventInfo.date;
+      });
+
+      var temp = document.getElementById("tempID")
+      temp.value = eventID;
+
+      }
+
+      //This is the function to hide the Save and Discard buttons then show the Sumbit button.
+      //This will also clear the input bar.
+      function updateDiscard(){
+        var btnSm = document.getElementById("eventpagesubmit");
+        var btnSv = document.getElementById("eventSave");
+        var btnDc = document.getElementById("eventDiscard");
+
+        btnSm.style.display = '';
+        btnSv.style.display = 'none';
+        btnDc.style.display = 'none';
+
+        var namebox = document.getElementById("eventnametextbox");
+        var datebox = document.getElementById("eventdatebox");
+        var desbox = document.getElementById("descriptiontextbox");
+
+        namebox.value = '';
+        desbox.value = '';
+        datebox.value = '';
+
+      }
+
 
       </script>
       </div>
