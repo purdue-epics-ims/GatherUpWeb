@@ -90,7 +90,7 @@
     var updateDate = document.getElementById("eventdatebox").value;
     var updateDes = document.getElementById("descriptiontextbox").value;
 
-		updatingRef.update({description: updateDes}, onComplete);
+		updatingRef.update({name: updateName, description: updateDes, date: updateDate}, onComplete);
 		// here try to pull data from the text fields for update, replace the text after description and name for correspoding ones
 
       };
