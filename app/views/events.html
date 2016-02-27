@@ -4,7 +4,7 @@
         <input ng-model = "eventdate" type = "date" id = "eventdatebox"/>
         <textarea ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
         <div class = "submitevent">
-          <input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit">
+          <input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit" >
           <input type = "button" style = "display:none" value = "Save" id = "eventSave" onclick="updateCall()">
           <input type = "button" style = "display:none" value = "Discard" id = "eventDiscard" onclick="updateDiscard()">
           <!--Here come the new buttons, and they are hidden at first><-->
@@ -19,7 +19,7 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <script>
         var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
-        myDataRef.on('child_added', function(snapshot) {
+        myDataRef.orderByChild("dateID").on('child_added', function(snapshot) {
         var eventMessage = snapshot.val();
         displayChatMessage(eventMessage.name, eventMessage.description, eventMessage.date, snapshot.name());
       });
