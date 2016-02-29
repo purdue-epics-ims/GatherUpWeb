@@ -126,10 +126,18 @@
         desbox.value = eventInfo.description;
         datebox.value = eventInfo.date;
       });
-
+      function parseDate(input) {
+        var parts = input.split('-');
+        // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+        return new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
+      }
       var temp = document.getElementById("tempID")
       temp.value = eventID;
 
+      }
+
+      function dateToString(input){
+          return (input.getFullYear()+"-"+input.getMonth()+"-"+input.getDate());
       }
 
       //This is the function to hide the Save and Discard buttons then show the Sumbit button.

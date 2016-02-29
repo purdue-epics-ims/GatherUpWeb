@@ -21,12 +21,12 @@ angular.module('krinaApp')
     /*if($scope.eventdate.getYear()!=0){
       dateID = $scope.eventdate.getYear()*366+$scope.eventdate.getMonth()*31+$scope.eventdate.getDay();
     }*/
-
+    var dateString = $scope.eventdate.getFullYear()+"-"+$scope.eventdate.getMonth()+"-"+$scope.eventdate.getDate();
 
     var eventObject = {
       "name": $scope.eventname,
       "description": $scope.eventdescription,
-      "date": $scope.eventdate.toDateString(),
+      "date": dateString,
       "dateID": dateID,
       "schema": "event"
     }
