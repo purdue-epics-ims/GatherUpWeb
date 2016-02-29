@@ -21,6 +21,8 @@ angular.module('krinaApp')
     /*if($scope.eventdate.getYear()!=0){
       dateID = $scope.eventdate.getYear()*366+$scope.eventdate.getMonth()*31+$scope.eventdate.getDay();
     }*/
+
+
     var eventObject = {
       "name": $scope.eventname,
       "description": $scope.eventdescription,
@@ -28,8 +30,16 @@ angular.module('krinaApp')
       "dateID": dateID,
       "schema": "event"
     }
-    myEventRef.push(eventObject);
-    alert("New event created!");
-    location.reload();
+    var onComplete = function(error) {
+      if (error) {
+
+      } else {
+          alert("New event created")
+          location.reload();
+      }
+    };
+
+    myEventRef.push(eventObject,onComplete);
+
 }
 });
