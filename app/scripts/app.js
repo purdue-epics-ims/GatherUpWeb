@@ -25,7 +25,7 @@ angular
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl' 
+        controller: 'LoginCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -37,7 +37,7 @@ angular
       })
       .when('/events', {
         templateUrl: 'views/events.html',
-        controller: 'EventsCtrl' 
+        controller: 'EventsCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -8,10 +8,7 @@
  * Controller of the krinaApp
  */
 angular.module('krinaApp')
-  .controller('MainCtrl', function ($scope,loginService) {
-    $scope.logout=function(){
-     loginService.logout();
-  };
+  .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
