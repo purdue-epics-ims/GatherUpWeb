@@ -52,8 +52,10 @@
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>
-              <li><a  href="#/login">Login</a></li>
-              <li><button type='sumbit' id='log' style="display:none" ng-click="logout()" style="border:0px solid black;background-color: transparent"><span>Logout</span></button></li>
+              <li><a  href="#/login" ng-hide='authData'>Login</a></li>
+              <li><a ng-show='authData' id='userInfo'>Hello! {{authData.password.email}}</a></li>
+              <li><button id='addUser' type='sumbit' ng-click="regi()" ng-show='authData' style="background-color: transparent">Add new user</button></li>
+              <li><button id='logout' type='sumbit' ng-click="logout()" ng-show='authData' style="background-color: transparent"><span>Logout</span></button></li>
               <!-- <li><a id = 'user'>none</a></li> -->
             </ul>
           </div>
@@ -109,7 +111,6 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/events.js"></script>
-        <script src="scripts/controllers/loginService.js"></script>
         <!-- endbuild -->
 
 </body>

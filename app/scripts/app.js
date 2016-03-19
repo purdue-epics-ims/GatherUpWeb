@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'LoginCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
@@ -42,4 +46,17 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+  angular.module('krinaApp').run(function($rootScope){
+    $rootScope.$on('$routeChangeStart', function(){
+        var check = $rootScope.authData;
+        console.log('show:',check);
+        if(!check) {
+          window.location = '#/login';
+          console.log('pass');
+        }
+        else { console.log('!pass');}
+      }
+    );
   });

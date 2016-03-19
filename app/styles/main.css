@@ -322,3 +322,26 @@ p{
   right: 29%;
   color: black;
 }
+
+#loginpagesubmit{
+  margin-top: 10px;
+}
+
+#userInfo{
+
+}
+
+#addUser{
+  /*margin-left: 15px;*/
+  position: absolute;
+  margin-top: 10px;
+  font-weight:50px;
+  height:30px;
+  width: 120px;
+}
+
+#logout{
+  position: absolute;;
+  margin-left: 140px;
+  margin-top: 10px;
+}
