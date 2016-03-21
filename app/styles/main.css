@@ -153,7 +153,7 @@ p{
     position: block;
     float: left;
     margin: 0 auto;
-    margin-top: 35%;
+    margin-top: 20%;
     right: 5%;
     font-size:70%;
     opacity: .8;
@@ -167,7 +167,7 @@ p{
     position: block;
     float: right;
     margin: 0 auto;
-    margin-top: 35%;
+    margin-top: 20%;
     left: 65%;
     font-size:70%;
     opacity: .8;
@@ -290,16 +290,16 @@ p{
 
 #eventSave{
   color: black;
-  position: fixed;
-  right: 71.5%;
-  top: 30%;
+  position: absolute;
+  left: 3%;
+  top: 65%;
 }
 
 #eventDiscard{
   color: black;
-  position: fixed;
-  right: 61.5%;
-  top: 30%;
+  position: absolute;;
+  left: 13%;
+  top: 65%;
 }
 
 #eventdatebox{
