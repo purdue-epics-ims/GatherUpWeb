@@ -6,9 +6,10 @@
 }
 
 body {
-  margin: 0.2em 0;
-  background: url("../images/backgroundarch.jpg")no-repeat;
-  background-size: 100%;
+  background: url("../images/backgroundarch.jpg") no-repeat center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -329,4 +330,27 @@ p{
   font-size: 20px;
   right: 3%;
   color: black;
+}
+
+#loginpagesubmit{
+  margin-top: 10px;
+}
+
+#userInfo{
+
+}
+
+#addUser{
+  /*margin-left: 15px;*/
+  position: absolute;
+  margin-top: 10px;
+  font-weight:50px;
+  height:30px;
+  width: 120px;
+}
+
+#logout{
+  position: absolute;;
+  margin-left: 140px;
+  margin-top: 10px;
 }

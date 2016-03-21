@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang = "en">
+<!-- <html lang = "en">
     <head>
         <meta charset = "utf-8">
         <link type = "text/css" rel="stylesheet" href = "stylesheet.css"/>
         <title>Purdue International Program</title>
-    </head>
-    <body>
-        <img id = "back" src="images\belltower.jpg">
+    </head> -->
+    <!-- <body> -->
+        <!-- <img id = "back" src="images\belltower.jpg"> -->
         <div class = "box">
-            <a href = "File.html"> <img  id = "purdue-ip" src ="purdue-ip.png" alt= "Purdue - International Programs"> </a>
-            <input type = "text" class="textbox" id = "Username" placeholder ="Choose a Username"/>
-            <input type = "text" class="textbox" id = "Password" placeholder ="Enter Email Address"/>
-			<input type ="password" type ="text" class = "textbox" id = "Pin" placeholder = "Enter Administrator Password"/>
-            <a href = "File.html"><div class = "reglogin">Submit</div></a>
-            <div class = "forgot_password"><a href="passwordpage.html">Forgot Password ?</a></div>
-            <div class = "register"><a href="register-form.html">Register</a></div>
+            <img  id = "purdue-ip" src ="images\purdue-ip.png" alt= "Purdue - International Programs">
+            <input ng-model = "email" type = "text" class="textbox" id = "email" placeholder ="Email"/>
+            <input ng-model = "password" type = "password" class="textbox" id = "password" placeholder ="Password"/>
+            <div class = "login"><input ng-click = "register()" type = "submit" id = "loginpagesubmit" value = "Add New User"></div>
         </div>
-    </body>
-</html>

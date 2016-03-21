@@ -1,20 +1,52 @@
 <!doctype html>
-  <div class = "mainpagebox">
+  <div class = "mainpagebox"> <!--The left box><-->
         <a href = "#/eventpage"><div class = "eventpage">Event Page</div></a>
         <ul><a href = "#/events"><div id = "editevent" class = "eventpagelist" >Add or Edit an Event</div></a></ul>
-        <ul><button onclick="jump()" href= "#/event" style="background-color:transparent;border:0px"><div id = "viewlistofevents" class = "eventpagelist">View List of Events</div></a></ul>
-        <ul><a href = "#/events"><div id = "generatereports" class = "eventpagelist">Generate Reports</div></a></ul>
+
+        <ul><a href = "#/events"><div id = "viewlistofevents" class = "eventpagelist">View List of Events</div></a></ul>
+        <ul><button onclick="generateCSV()" style="background-color: transparent;border:0px solid black"><div id = "viewlistofevents" class = "eventpagelist">Generate Reports</div></a></ul>
   </div>
-  <div class = "mainpagebox2">
+  <div class = "mainpagebox2"> <!--The right box><-->
         <a href = "#/culture"><div class = "eventpage">Cultures Page</div></a>
         <ul><a href = "#/culture"><div id = "listofcultures" class = "eventpagelist">List of Cultures</div></a></ul>
         <ul><a href = "#/culture"><div id = "addaculture" class = "eventpagelist">Add a Culture</div></a></ul>
   </div>
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
-<Script>
-     function jump() {
-       //window.href = ref;
-       window.location = "#/login"
-       var temp = document.getElementById("ref");
-       temp.value = "#/events";
-     }
+  <script>
+
+  function generateCSV(){
+    var csv = 'hi';
+    var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
+    var totalCount = 0;
+    var count = 0;
+
+    var a = document.createElement('a');
+
+    myDataRef.orderByChild("dateID").on('child_added', function(snapshot) {
+      var eventMessage = snapshot.val();
+      a.download = "PurdueEpics_"+eventMessage.name + ".txt";
+      var myDataRef2 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
+      var myDataRef3 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
+
+      myDataRef3.once("value", function(snapshot3) {
+        totalCount = snapshot3.numChildren();
+        csv = '';
+        count = 0;
+        myDataRef2.on('child_added', function(snapshot2){
+          csv += snapshot2.val().puid+'\r\n';
+          count++;
+          if(count == totalCount){
+            a.href='data:text/csv;base64,' + btoa(csv);
+            a.click();
+          }
+        });
+      });
+    });
+
+
+  }
+
+
+  </script>
