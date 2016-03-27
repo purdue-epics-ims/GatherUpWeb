@@ -17,7 +17,7 @@ angular.module('krinaApp')
       var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
       return v.toString(16);
     })};
-    var dateID = $scope.eventdate.getTime();
+    var dateID = $scope.eventdate.getTime() / 1000;
     /*if($scope.eventdate.getYear()!=0){
       dateID = $scope.eventdate.getYear()*366+$scope.eventdate.getMonth()*31+$scope.eventdate.getDay();
     }*/

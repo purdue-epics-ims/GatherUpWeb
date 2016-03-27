@@ -39,7 +39,7 @@
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
           // more specificlly, call the "deleteEvent(eventID)" function below
-          var d = new Date(date);
+          var d = new Date(date*1000);
 
           td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
          				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
@@ -137,7 +137,7 @@
     var updateDate = document.getElementById("eventdatebox").value;
     var updateDes = document.getElementById("descriptiontextbox").value;
 
-		updatingRef.update({name: updateName, description: updateDes, date: updateDate}, onComplete);
+		updatingRef.update({name: updateName, description: updateDes, dateID: updateDate}, onComplete);
 		// here try to pull data from the text fields for update, replace the text after description and name for correspoding ones
 
       };
@@ -166,6 +166,10 @@
         desbox.value = eventInfo.description;
         datebox.value = eventInfo.date;
       });
+
+
+
+
       function parseDate(input) {
         var parts = input.split('-');
         // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
