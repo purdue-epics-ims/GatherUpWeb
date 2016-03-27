@@ -145,20 +145,22 @@ p{
     margin-top: 2px;
 }
 
+/* This is the Events box*/
 .mainpagebox{
     height: 400px;
-    width: 300px;
+    width: 600px;
     border: 4px solid black;
     background-color: white;
     position: block;
-    float: left;
     margin: 0 auto;
-    margin-top: 20%;
-    right: 5%;
+
+    margin-top: 35%;
+    align-self: center;
     font-size:70%;
     opacity: .8;
  }
 
+/* This is the Cultures box*/
  .mainpagebox2{
     height: 400px;
     width: 300px;
@@ -180,13 +182,14 @@ p{
     top: 50%;
     font-size: 42px;
     font-weight: bold;
+    margin-bottom: 35px;
 }
 
 .eventpagelist{
   font-family: "Arial Black", Gadget, sans-serif;
   color: black;
   text-align: center;
-  margin-top: 22px;
+  margin-top: 50px;
   margin-right: 35px;
   top: 60%;
   font-size: 23px;

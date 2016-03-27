@@ -1,16 +1,19 @@
 <!doctype html>
-  <div class = "mainpagebox"> <!--The left box><-->
+  <div class = "mainpagebox"> <!--The Event box><-->
         <a href = "#/eventpage"><div class = "eventpage">Event Page</div></a>
         <ul><a href = "#/events"><div id = "editevent" class = "eventpagelist" >Add or Edit an Event</div></a></ul>
 
         <ul><a href = "#/events"><div id = "viewlistofevents" class = "eventpagelist">View List of Events</div></a></ul>
         <ul><button onclick="generateCSV()" style="background-color: transparent;border:0px solid black"><div id = "viewlistofevents" class = "eventpagelist">Generate Reports</div></a></ul>
   </div>
-  <div class = "mainpagebox2"> <!--The right box><-->
+
+<!-- This is the culture box. Commented out because it is unnecessary for the current release:
+  <div class = "mainpagebox2">
         <a href = "#/culture"><div class = "eventpage">Cultures Page</div></a>
         <ul><a href = "#/culture"><div id = "listofcultures" class = "eventpagelist">List of Cultures</div></a></ul>
         <ul><a href = "#/culture"><div id = "addaculture" class = "eventpagelist">Add a Culture</div></a></ul>
-  </div>
+  </div> -->
+
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
