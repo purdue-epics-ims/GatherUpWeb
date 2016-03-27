@@ -105,7 +105,7 @@ p{
     height: 50%;
     border: 2px solid black;
     background-color: white;
-    position: fixed;
+    position: absolute;
     top: 25%;
     font-size:70%;
 }
@@ -232,7 +232,15 @@ p{
 }
 
 #loginpagesubmit{
-  margin-top: 2px;
+
+  position: absolute;
+  left: 25%;
+  top: 59%;
+  margin-left: 40px;*/
+  /*margin-top: -18px;*/
+
+  /*position: absolute;*/
+  /*margin-top: 5%;*/
 }
 
 .culturebox{
