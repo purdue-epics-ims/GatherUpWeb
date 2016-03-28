@@ -31,14 +31,6 @@ angular
         templateUrl: 'views/register.html',
         controller: 'LoginCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/culture', {
-        templateUrl: 'views/culture.html',
-        controller: 'CultureCtrl'
-      })
       .when('/events', {
         templateUrl: 'views/events.html',
         controller: 'EventsCtrl'
