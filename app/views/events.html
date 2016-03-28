@@ -21,7 +21,7 @@
         var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
         myDataRef.orderByChild("dateID").on('child_added', function(snapshot) {
         var eventMessage = snapshot.val();
-        displayChatMessage(eventMessage.name, eventMessage.description, eventMessage.date, snapshot.name());
+        displayChatMessage(eventMessage.name, eventMessage.description, eventMessage.dateID, snapshot.name());
       });
 
 
@@ -30,21 +30,26 @@
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
           td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
+          "<button onclick='generateCSVEvent(\""+eventID+ "\")' name='generate' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> CSV </span></button>" +
           "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
           "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
+
+
 
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
           // more specificlly, call the "deleteEvent(eventID)" function below
+          var d = new Date(date*1000);
 
           td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
-         				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+date+"</span></div>";
+         				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
 
 
           tr.appendChild(td1);
           tr.appendChild(td2);
+
         //  tr.appendChild(td3);
       };
 
@@ -76,6 +81,41 @@
       }
       };
 
+       function generateCSVEvent(eventID) {
+
+            var csv = '';
+    var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
+    var totalCount = 0;
+    var count = 0;
+
+    var a = document.createElement('a');
+
+    myDataRef.orderByChild("dateID").on('child_added', function(snapshot) {
+      var eventMessage = snapshot.val();
+      a.download = "PurdueEpics_"+eventMessage.name + ".txt";
+      var myDataRef2 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
+      var myDataRef3 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
+
+      if(snapshot.name() == eventID){
+          myDataRef3.once("value", function(snapshot3) {
+          totalCount = snapshot3.numChildren();
+          csv = '';
+          count = 0;
+          myDataRef2.on('child_added', function(snapshot2){
+            csv += snapshot2.val().puid + ","+ snapshot2.val("firstname") + ","+ snapshot2.val("lastname")+","+snapshot2.val("email") +'\r\n';
+            count++;
+            if(count == totalCount){
+              a.href='data:text/csv;base64,' + btoa(csv);
+              a.click();
+            }
+          });
+        });
+      }
+    });
+
+
+      };
+
       //Get eventID from a hidden input bar now.
       //The function will extract data from the input bar for update.
       function updateCall() {
@@ -97,7 +137,7 @@
     var updateDate = document.getElementById("eventdatebox").value;
     var updateDes = document.getElementById("descriptiontextbox").value;
 
-		updatingRef.update({name: updateName, description: updateDes, date: updateDate}, onComplete);
+		updatingRef.update({name: updateName, description: updateDes, dateID: updateDate}, onComplete);
 		// here try to pull data from the text fields for update, replace the text after description and name for correspoding ones
 
       };
@@ -126,6 +166,10 @@
         desbox.value = eventInfo.description;
         datebox.value = eventInfo.date;
       });
+
+
+
+
       function parseDate(input) {
         var parts = input.split('-');
         // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])

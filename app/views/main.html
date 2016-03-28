@@ -20,7 +20,7 @@
   <script>
 
   function generateCSV(){
-    var csv = 'hi';
+    var csv = '';
     var myDataRef = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event');
     var totalCount = 0;
     var count = 0;
@@ -38,7 +38,7 @@
         csv = '';
         count = 0;
         myDataRef2.on('child_added', function(snapshot2){
-          csv += snapshot2.val().puid+'\r\n';
+          csv += snapshot2.val().puid+ ","+ snapshot2.val("firstname") + ","+ snapshot2.val("lastname")+","+snapshot2.val("email") + '\r\n';
           count++;
           if(count == totalCount){
             a.href='data:text/csv;base64,' + btoa(csv);
