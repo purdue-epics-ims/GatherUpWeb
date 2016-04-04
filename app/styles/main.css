@@ -259,10 +259,10 @@ p{
 .culturebox{
   position: absolute;
   top: 12%;
-  left: 5%;
+  left: 15%;
   height: 300px;
   margin-top: 20px;
-  width: 90%;
+  width: 70%;
 
   border: 4px solid black;
   background-color: white;
@@ -271,10 +271,10 @@ p{
 
 #culturebox2{
   position: absolute;
-  left: 5%;
+  left: 15%;
   height: 300px;
   margin-top: 340px;
-  width: 90%;
+  width: 70%;
 
 
   border: 4px solid black;
