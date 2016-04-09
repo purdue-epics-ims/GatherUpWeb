@@ -18,6 +18,11 @@ angular.module('krinaApp')
       return v.toString(16);
     })};
     var dateID = $scope.eventdate.getTime() / 1000;
+    var timeID = document.getElementById("eventtimebox").value;
+    
+    var timeIDS = timeID.split(":");
+    var Hour = parseInt(timeIDS[0])*3600;
+    var Mint = parseInt(timeIDS[1])*60;
     /*if($scope.eventdate.getYear()!=0){
       dateID = $scope.eventdate.getYear()*366+$scope.eventdate.getMonth()*31+$scope.eventdate.getDay();
     }*/
@@ -25,7 +30,7 @@ angular.module('krinaApp')
     var eventObject = {
       "name": $scope.eventname,
       "description": $scope.eventdescription,
-      "dateID": dateID,
+      "dateID": (dateID + Hour + Mint),
       "schema": "event"
     }
     var onComplete = function(error) {
