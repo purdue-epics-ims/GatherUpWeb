@@ -301,7 +301,7 @@ p{
   color: black;
   position: absolute;
   left: 3%;
-  top: 60%;
+  top: 80%;
 }
 
 #eventSave{
@@ -325,6 +325,15 @@ p{
     position: absolute;
     left: 3%;
     top: 40%;
+}
+
+#eventtimebox{
+    color: grey;
+    font-size: 20px;
+    width: 25%;
+    position: absolute;
+    left: 3%;
+    top: 60%;
 }
 
 #eventnametextbox{
