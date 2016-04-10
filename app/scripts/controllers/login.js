@@ -28,8 +28,7 @@ angular.module('krinaApp')
        window.alert('Login failed, please enter a valid username and password!', error);
       } else{
        console.log('Authenticated successfully!', authData);
-       var temp = document.getElementById(ref).value;
-       window.location = temp;
+       window.location = '#/main';
        location.reload();
      }
    });
@@ -71,7 +70,6 @@ angular.module('krinaApp')
       } else {
         window.alert('Successfully created user account with uid:', userData.uid);
         console.log('Successfully created user account with uid:', userData.uid);
-        window.location='/#/main';
       }
     });
   };
