@@ -57,16 +57,21 @@ angular.module('krinaApp')
       if (error) {
         switch (error.code) {
           case 'EMAIL_TAKEN':
+          window.alert('The new user account cannot be created because the email is already in use.');
           console.log('The new user account cannot be created because the email is already in use.');
           break;
           case 'INVALID_EMAIL':
+          window.alert('The specified email is not a valid email.');
           console.log('The specified email is not a valid email.');
           break;
           default:
+          window.alert('The specified email is not a valid email.');
           console.log('Error creating user:', error);
         }
       } else {
+        window.alert('Successfully created user account with uid:', userData.uid);
         console.log('Successfully created user account with uid:', userData.uid);
+        window.location='/#/main';
       }
     });
   };
