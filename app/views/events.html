@@ -102,7 +102,11 @@
           csv = 'puid,firstname,lastname,email\r\n';
           count = 0;
           myDataRef2.on('child_added', function(snapshot2){
-            csv += snapshot2.val().puid + ","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
+            if(snapshot2.val().email.indexOf("@purdue.edu")>-1 && snapshot2.val().puid==""){
+              csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
+              }else{
+                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
+            }
             count++;
             if(count == totalCount){
               a.href='data:text/csv;base64,' + btoa(csv);
