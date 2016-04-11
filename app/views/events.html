@@ -9,7 +9,7 @@
         <input type = "button" style = "display:none" value = "Save" id = "eventSave" onclick="updateCall()">
         <input type = "button" style = "display:none" value = "Discard" id = "eventDiscard" onclick="updateDiscard()">
           <!--Here come the new buttons, and they are hidden at first><-->
-          <!-- <input style="display:none" id = "tempID"> -->
+           <input style="display:none" id = "tempID">
           <!--ID storage for update><-->
         </div>
 
@@ -121,7 +121,6 @@
       //Get eventID from a hidden input bar now.
       //The function will extract data from the input bar for update.
       function updateCall() {
-
         var eventID = document.getElementById("tempID").value;
       	var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
       	var updatingRef = new Firebase(address);
@@ -136,8 +135,19 @@
 			}
 		};
     var updateName = document.getElementById("eventnametextbox").value;
-    var updateDate = document.getElementById("eventdatebox").value;
     var updateDes = document.getElementById("descriptiontextbox").value;
+
+      var dateID2 = document.getElementById("eventdatebox").value;
+      var d = new Date(dateID2);
+      var dateID = d.getTime();
+
+    console.log("dateID",dateID);
+
+    var timeID = document.getElementById("eventtimebox").value;
+    var timeIDS = timeID.split(":");
+    var Hour = parseInt(timeIDS[0])*3600;
+    var Mint = parseInt(timeIDS[1])*60;
+    var updateDate = (dateID + Hour + Mint);
 
 		updatingRef.update({name: updateName, description: updateDes, dateID: updateDate}, onComplete);
 		// here try to pull data from the text fields for update, replace the text after description and name for correspoding ones
@@ -147,6 +157,7 @@
       //This is the function to hide the Sumbit button and show the Save and Discard button
       //This will also extract data from Firebase and fill it in the input bar
       function updateShow(eventID){
+
         var btnSm = document.getElementById("eventpagesubmit");
         var btnSv = document.getElementById("eventSave");
         var btnDc = document.getElementById("eventDiscard");
@@ -166,7 +177,7 @@
         var eventInfo = snapshot.val();
         namebox.value = eventInfo.name;
         desbox.value = eventInfo.description;
-        datebox.value = eventInfo.date;
+      //  datebox.value = eventInfo.date;
       });
 
 
