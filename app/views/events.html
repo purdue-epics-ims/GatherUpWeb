@@ -99,7 +99,7 @@
       if(snapshot.name() == eventID){
           myDataRef3.once("value", function(snapshot3) {
           totalCount = snapshot3.numChildren();
-          csv = '';
+          csv = 'puid,firstname,lastname,email\r\n';
           count = 0;
           myDataRef2.on('child_added', function(snapshot2){
             csv += snapshot2.val().puid + ","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
