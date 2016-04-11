@@ -16,6 +16,7 @@
 </div>
     <div class = "culturebox" id = "culturebox2" style="height:500px;overflow:auto">
         <p><div id = "culturelistheader" style="height:500px; width: 100%; overflow:auto">Current List of Events</div></p>
+
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
         <script>
@@ -30,13 +31,13 @@
         var tr = document.getElementById("culturelistheader");
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
+          var td3 = document.createElement("tr");
           td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
           "<button onclick='generateCSVEvent(\""+eventID+ "\")' name='generate' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> CSV </span></button>" +
           "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
           "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
 
-
-
+          td3.innerHTML="<input type='file' name='upload' onchange='uploadCSV(\""+eventID+ "\")' id='\""+eventID+"\"'>";
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
           // more specificlly, call the "deleteEvent(eventID)" function below
@@ -47,9 +48,9 @@
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
 
-
           tr.appendChild(td1);
           tr.appendChild(td2);
+          tr.appendChild(td3);
 
         //  tr.appendChild(td3);
       };
@@ -220,6 +221,38 @@
          }
          //return result; //JavaScript object
          return JSON.stringify(result); //JSON
+      }
+
+      function uploadCSV(eventID){
+        if (window.FileReader) {
+          var csv = document.getElementById(eventID);
+          if(csv.files.length != 0){
+           var reader = new FileReader();
+           console.log('1');
+           reader.onload=function(e){
+             console.log('Success');
+           };
+           reader.onerror=function(e){
+             window.alert('Cannot read the file');
+           };
+           //reader.readAsText(csv.files[0],'UTF-8');
+           var output = csvtoJSON(csv.files[0].toString());
+           //console.log('see:',output);
+           var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
+           var updatingRef = new Firebase(address);
+           var onComplete = function(error) {
+   	  	      if (error) {
+   			        } else {
+   			            window.alert("Update Successful");
+   			        }
+   		    };
+          //updatingRef.update({field:output}, onComplete);
+
+         }
+         else{window.alert('Please select a non-empty txt file');}
+        } else {
+          window.alert('FileReader are not supported in this browser.');
+        }
       }
 
 

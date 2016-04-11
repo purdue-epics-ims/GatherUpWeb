@@ -19,7 +19,7 @@ angular.module('krinaApp')
   });
 
 //Login func
-  $scope.login=function(ref){
+  $scope.login=function(){
     myDataRef.authWithPassword({
      'email': $scope.email,
      'password': $scope.password

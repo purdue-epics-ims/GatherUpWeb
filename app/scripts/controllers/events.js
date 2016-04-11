@@ -19,7 +19,7 @@ angular.module('krinaApp')
     })};
     var dateID = $scope.eventdate.getTime() / 1000;
     var timeID = document.getElementById("eventtimebox").value;
-    
+
     var timeIDS = timeID.split(":");
     var Hour = parseInt(timeIDS[0])*3600;
     var Mint = parseInt(timeIDS[1])*60;
@@ -37,12 +37,13 @@ angular.module('krinaApp')
       if (error) {
 
       } else {
-          alert("New event created")
+          window.alert("New event created")
           location.reload();
       }
     };
 
     myEventRef.push(eventObject,onComplete);
 
-}
+};
+
 });
