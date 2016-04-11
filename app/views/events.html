@@ -141,12 +141,13 @@
 
       var dateID2 = document.getElementById("eventdatebox").value;
       var d = new Date(dateID2);
-      var dateID = d.getTime();
+      var dateID = (d.getTime()+(4*3600000))/1000;
 
     console.log("dateID",dateID);
 
     var timeID = document.getElementById("eventtimebox").value;
     var timeIDS = timeID.split(":");
+
     var Hour = parseInt(timeIDS[0])*3600;
     var Mint = parseInt(timeIDS[1])*60;
     var updateDate = (dateID + Hour + Mint);
