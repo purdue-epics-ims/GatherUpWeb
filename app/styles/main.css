@@ -317,6 +317,12 @@ p{
   left: 13%;
   top: 80%;
 }
+#csvUpload{
+  color: black;
+  position: absolute;
+  left: 28%;
+  top: 80%;
+}
 
 #eventdatebox{
     color: grey;
