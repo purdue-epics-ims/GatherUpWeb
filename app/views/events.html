@@ -226,22 +226,43 @@
       }
 
       function csvtoJSON(csv){
+        var eventID = document.getElementById("tempID").value;
+        var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID+'/attendees';
+        var updatingRef = new Firebase(address);
+        updatingRef.remove(onComplete);
+        var onComplete = function(error) {
+           if (error) {
+             } else {
+                 console.log("Update Successful");
+             }
+       };
+
         var lines=csv.split("\n");
         console.log('l:',lines.length);
         var result = [];
         var headers=lines[0].split(",");
-        for(var i=0;i<lines.length;i++){
-       	  var obj = {};
+        for(var i=1;i<lines.length-1;i++){
+       	 //  var obj = {};
        	  var currentline=lines[i].split(",");
            console.log('cl:',currentline);
-       	  for(var j=0;j<headers.length;j++){
-       		     obj[headers[j]] = currentline[j];
-       	  }
-       	  result.push(obj);
+       	 //  for(var j=0;j<headers.length;j++){
+       	// 	     obj[headers[j]] = currentline[j];
+       	 //  }
+         var obj = {
+           "email": currentline[0],
+           "firstname": currentline[1],
+           "lastname": currentline[2],
+           "puid": currentline[3]
          }
-          console.log('r:',result);
+          if(obj != {}){
+       	  //result.push(obj);
+          console.log('check:',obj);
+          updatingRef.push(obj, onComplete);
+          }
+         }
+          //console.log('r:',result);
          //return result; //JavaScript object
-         return JSON.stringify(result); //JSON
+         //return JSON.stringify(result); //JSON
       }
 
       function uploadCSV(){
@@ -251,17 +272,7 @@
            var reader = new FileReader();
            reader.onload=function(e){
              console.log('Success');
-             var output = csvtoJSON(e.target.result);
-             var eventID = document.getElementById("tempID").value;
-             var address = 'https://dazzling-inferno-9963.firebaseio.com/event/'+eventID;
-             var updatingRef = new Firebase(address);
-             var onComplete = function(error) {
-     	  	      if (error) {
-     			        } else {
-     			            window.alert("Update Successful");
-     			        }
-     		    };
-            updatingRef.update({attendees:output}, onComplete);
+             csvtoJSON(e.target.result);
            };
            reader.onerror=function(e){
              window.alert('Cannot read the file');
