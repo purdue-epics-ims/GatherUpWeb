@@ -99,13 +99,13 @@
       if(snapshot.name() == eventID){
           myDataRef3.once("value", function(snapshot3) {
           totalCount = snapshot3.numChildren();
-          csv = 'puid,firstname,lastname,email\r\n';
+          csv = 'puid,firstname,lastname,email,domestic/int,year\r\n';
           count = 0;
           myDataRef2.on('child_added', function(snapshot2){
             if(snapshot2.val().email.indexOf("@purdue.edu")>-1 && snapshot2.val().puid==""){
-              csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
+              csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + "," + '\r\n';
               }else{
-                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email +'\r\n';
+                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + snapshot2.val().intstatus + "," + snapshot2.val().year + '\r\n';
             }
             count++;
             if(count == totalCount){
@@ -234,6 +234,7 @@
            if (error) {
              } else {
                  console.log("Update Successful");
+                 location.reload();
              }
        };
 
@@ -241,7 +242,7 @@
         console.log('l:',lines.length);
         var result = [];
         var headers=lines[0].split(",");
-        for(var i=1;i<lines.length-1;i++){
+        for(var i=1;i<lines.length;i++){
        	 //  var obj = {};
        	  var currentline=lines[i].split(",");
            console.log('cl:',currentline);
@@ -249,10 +250,12 @@
        	// 	     obj[headers[j]] = currentline[j];
        	 //  }
          var obj = {
-           "email": currentline[0],
+           "puid": currentline[0],
            "firstname": currentline[1],
            "lastname": currentline[2],
-           "puid": currentline[3]
+           "email": currentline[3],
+           "intstatus": currentline[4],
+           "year": currentline[5]
          }
           if(obj != {}){
        	  //result.push(obj);
