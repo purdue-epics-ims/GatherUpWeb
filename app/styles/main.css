@@ -207,12 +207,13 @@ p{
 
 #editevent{
   margin-right: 40px;
-  margin-top: 20px;
+  margin-top: 70px; /*Change to 20px if a third element enters the list */
   color: #000000;
 }
 
 #viewlistofevents{
   margin-right: 50px;
+  padding-top: 20px; /*Remove line if third element is added */
   text-align: center;
   color: #000000;
 }
