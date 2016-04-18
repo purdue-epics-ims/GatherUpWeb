@@ -147,7 +147,7 @@ p{
 
 /* This is the Events box*/
 .mainpagebox{
-  
+
     height: 400px;
     width: 600px;
     border: 4px solid black;
@@ -155,15 +155,7 @@ p{
     position: block;
     margin: 0 auto;
 
-<<<<<<< HEAD
     margin-top: 25%;
-=======
-<<<<<<< 18b13a7e439c18fd897ddc1d6ecda5efc22a089e
-    margin-top: 10%;
-=======
-    margin-top: 25%;
->>>>>>> Main Page box
->>>>>>> c552d058e1c04be50d5226c195a9f732d718ba82
     align-self: center;
     font-size:70%;
     opacity: .8;
