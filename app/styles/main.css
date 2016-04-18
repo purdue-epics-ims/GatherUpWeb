@@ -147,6 +147,7 @@ p{
 
 /* This is the Events box*/
 .mainpagebox{
+  
     height: 400px;
     width: 600px;
     border: 4px solid black;
