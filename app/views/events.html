@@ -1,22 +1,28 @@
 <div class = "culturebox">
-        <p><div id = "cultureheader">Add an Event</p>
+        <div id = "cultureheader"><p id="cultureheading">Add an Event</p>
+        <div id = "gotoleft">
         <input ng-model = "eventname" type = "text" class="textbox" id = "eventnametextbox" placeholder ="Name of Event"/>
         <input ng-model = "eventdate" type = "date" id = "eventdatebox"/>
+
         <input ng-model = "eventtime" type = "time" id = "eventtimebox"/>
-        <textarea ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
-        <!-- <div class = "submitevent"> -->
+        <input type='file' style = "display:none" id='csvUpload' onchange="uploadCSV()" name="Upload CSV">
         <input ng-click = "eventsubmit()" type = "submit" id = "eventpagesubmit" value = "Submit" >
         <input type = "button" style = "display:none" value = "Save" id = "eventSave" onclick="updateCall()">
         <input type = "button" style = "display:none" value = "Discard" id = "eventDiscard" onclick="updateDiscard()">
-        <input type='file' style = "display:none" id='csvUpload' onchange="uploadCSV()" style="width=90px">
+        </div>
+        <textarea ng-model = "eventdescription" type = "text" class="textbox" id = "descriptiontextbox" placeholder ="Describe the Event"/>
+        <!-- <div class = "submitevent"> -->
+        
           <!--Here come the new buttons, and they are hidden at first><-->
            <input style="display:none" id = "tempID">
           <!--ID storage for update><-->
         </div>
 
 </div>
-    <div class = "culturebox" id = "culturebox2" style="height:500px;overflow:auto">
-        <p><div id = "culturelistheader" style="height:500px; width: 100%; overflow:auto">Current List of Events</div></p>
+    <div class = "culturebox" id = "culturebox2" style="height:510px; min-width:700px; overflow:none">
+        <div id = "culturelistheader" style="height:500px; width: 100%;overflow:auto">
+        <p id = "culturelistheading">Current List of Events</p>
+        </div>
 
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
@@ -32,7 +38,7 @@
         var tr = document.getElementById("culturelistheader");
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
-          td1.innerHTML = "<br><div style='text-align: left';><span style='font-size:20px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
+          td1.innerHTML = "<br><div style='text-align: left; margin-left: 15px';><span style='font-size:22px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
           "<button onclick='generateCSVEvent(\""+eventID+ "\")' name='generate' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> CSV </span></button>" +
           "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
           "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
@@ -42,8 +48,8 @@
           // more specificlly, call the "deleteEvent(eventID)" function below
           var d = new Date(date*1000);
 
-          td2.innerHTML = "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
-         				+ "<div style='text-align: left';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
+          td2.innerHTML = "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
+         				+ "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
 
@@ -160,6 +166,7 @@
       //This is the function to hide the Sumbit button and show the Save and Discard button
       //This will also extract data from Firebase and fill it in the input bar
       function updateShow(eventID){
+        document.getElementById("cultureheading").innerHTML = "Update Event";
 
         var btnSm = document.getElementById("eventpagesubmit");
         var btnSv = document.getElementById("eventSave");
@@ -222,6 +229,8 @@
         namebox.value = '';
         desbox.value = '';
         datebox.value = '';
+
+        document.getElementById("cultureheading").innerHTML = "Add an Event";
 
       }
 
