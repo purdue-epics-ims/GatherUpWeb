@@ -290,6 +290,7 @@
              console.log('Success');
              csvtoJSON(e.target.result);
              window.alert('Update Success');
+             updateDiscard();
            };
            reader.onerror=function(e){
              window.alert('Cannot read the file');
