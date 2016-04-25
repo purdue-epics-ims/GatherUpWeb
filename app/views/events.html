@@ -109,13 +109,13 @@
             window.alert('No data to download');
             return;
           }
-          csv = 'puid,firstname,lastname,email,domestic/int,year\r\n';
+          csv = 'puid,firstname,lastname,email,domestic/int,year\n';
           count = 0;
           myDataRef2.on('child_added', function(snapshot2){
             if(snapshot2.val().email.indexOf("@purdue.edu")>-1 && snapshot2.val().puid==""){
-              csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + "," + '\r\n';
+              csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + "," + '\n';
               }else{
-                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + snapshot2.val().intstatus + "," + snapshot2.val().year + '\r\n';
+                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + snapshot2.val().intstatus + "," + snapshot2.val().year + '\n';
             }
             count++;
             if(count == totalCount){
