@@ -115,7 +115,7 @@
             if(snapshot2.val().email.indexOf("@purdue.edu")>-1 && snapshot2.val().puid==""){
               csv += "**********,"+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + "," + '\n';
               }else{
-                csv += "\""+snapshot2.val().puid + "\","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + snapshot2.val().intstatus + "," + snapshot2.val().year + '\n';
+                csv += ""+snapshot2.val().puid + ","+ snapshot2.val().firstname + ","+ snapshot2.val().lastname+","+snapshot2.val().email + "," + snapshot2.val().intstatus + "," + snapshot2.val().year + '\n';
             }
             count++;
             if(count == totalCount){
