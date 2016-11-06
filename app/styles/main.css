@@ -7,6 +7,7 @@
 
 body {
   background: url("../images/backgroundarch.jpg") no-repeat center center fixed;
+  border: 0px;
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -18,13 +19,14 @@ body {
 .header,
 .marketing,
 .footer {
+  border: 0px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 0px solid #e5e5e5;
   margin-bottom: 10px;
 }
 /* Make the masthead heading the same height as the navigation */
@@ -39,7 +41,7 @@ body {
 .footer {
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
+  border-top: 0px solid #e5e5e5;
 }
 
 .container-narrow > hr {
@@ -139,6 +141,7 @@ p{
     height: 400px;
     width: 600px;
     border: 4px solid black;
+    border-radius: 7px;
     background-color: white;
     position: block;
     margin: 0 auto;
@@ -154,6 +157,7 @@ p{
     height: 400px;
     width: 300px;
     border: 4px solid black;
+    border-radius: 7px;
     background-color: white;
     position: block;
     float: right;
@@ -166,7 +170,7 @@ p{
 
 .eventpage{
     font-family: "Times New Roman", Times, serif;
-    color: #DAA520;
+    color: #d39f1d;
     text-align: center;
     top: 50%;
     font-size: 42px;
@@ -186,6 +190,7 @@ p{
 
 .generatereports{
   font-family: "Arial Black", Gadget, sans-serif;
+  border: 1px;
   color: black;
   text-align: center;
   margin-top: 50px;
@@ -244,6 +249,7 @@ p{
   min-width:700px;
 
   border: 4px solid black;
+  border-radius: 7px;
   background-color: white;
   font-size:70%;
 }

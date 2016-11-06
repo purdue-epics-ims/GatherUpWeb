@@ -38,18 +38,18 @@
         var tr = document.getElementById("culturelistheader");
           var td1 = document.createElement("tr");
           var td2 = document.createElement("tr");
-          td1.innerHTML = "<br><div style='text-align: left; margin-left: 15px';><span style='font-size:22px; color:blue;'> Name: </span> <span style='font-size:22px; color:black;'> "+name+"</span>"+
-          "<button onclick='generateCSVEvent(\""+eventID+ "\")' name='generate' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> CSV </span></button>" +
-          "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
-          "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:0px solid black; height:30px;width:70px; background-color: transparent\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
+          td1.innerHTML = "<br><div style='text-align: left; margin-left: 15px';><span style='font-size:22px; color:#d39f1d;'> Name: </span> <span style='font-size:22px; color:black; margin-right:15px;'> "+name+"</span>"+
+          "<button onclick='generateCSVEvent(\""+eventID+ "\")' name='generate' style=\"border:1px solid black; border-radius: 5px; margin-right: 5px; height:30px;width:70px; background-color: #f9f9f7;\"><span style='font-size:15px; color:red;'> CSV </span></button>" +
+          "<button onclick='deleteEvent(\""+eventID+ "\")' name='delete' style=\"border:1px solid black; border-radius: 5px; margin-right: 5px; height:30px;width:70px; background-color: #f9f9f7\"><span style='font-size:15px; color:red;'> Delete </span></button>" +
+          "<button onclick='updateShow(\""+eventID+ "\")' name='update' style=\"border:1px solid black; border-radius: 5px; height:30px;width:70px; background-color: #f9f9f7\"><span style='font-size:15px; color:red;'> Update </span></button></div>";
 
           // the above line adds a button that stand for "delete this event"
           // the button is currently not linked to the actual delete function, your job is to establish this link
           // more specificlly, call the "deleteEvent(eventID)" function below
           var d = new Date(date*1000);
 
-          td2.innerHTML = "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:blue;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
-         				+ "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:blue;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
+          td2.innerHTML = "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:#d39f1d;'> Description: </span> <span style='font-size:20px; color:black;'> "+text+"</span></div>"
+         				+ "<div style='text-align: left; margin-left: 15px';><span style='font-size:20px; color:#d39f1d;'> Date: </span> <span style='font-size:20px; color:black;'> "+d.toString()+"</span></div>";
           // this is a new field which is the "eventID", any event is uniquely determined by its "eventID"
           // this is needed because its the only way to identify what event to delete  in firebase
 
@@ -98,7 +98,7 @@
 
     myDataRef.orderByChild("dateID").on('child_added', function(snapshot) {
       var eventMessage = snapshot.val();
-      a.download = "PurdueEpics_"+eventMessage.name + ".csv";
+      a.download = "AttendanceFor_"+eventMessage.name + ".csv";
       var myDataRef2 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
       var myDataRef3 = new Firebase('https://dazzling-inferno-9963.firebaseio.com/event/'+snapshot.name()+"/attendees");
 
