@@ -6,7 +6,9 @@
 }
 
 body {
-  background: url("../images/backgroundarch.jpg") no-repeat center center fixed;
+  background: #FF4E50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FF4E50 , #F9D423); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FF4E50 , #F9D423); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border: 0px;
   background-size: cover;
   width: 100%;
@@ -113,19 +115,6 @@ p{
 
 #purdue-ip {
   width: 100%;
-}
-
-#email, #password {
-  display: block;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 50%;
-  font-size: 15px;
-}
-
-#email {
-  margin-top: 50px;
 }
 
 #loginpagesubmit {
