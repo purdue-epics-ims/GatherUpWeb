@@ -27,44 +27,6 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <!-- Add conctroller for navigation bar-->
-      <div class="navbar navbar-default" role="navigation" >
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">Office of International Programs</a>
-
-          </div>
-
-          <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-          <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-          <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script> -->
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav" ng-controller="LoginCtrl">
-              <!-- Navigation bar contents -->
-              <li><a href="#/">Home</a></li>
-              <li><a href="#/login" ng-hide='authData'>Login</a></li>
-              <li><a ng-show='authData' id='userInfo'>Hello! {{authData.password.email}}</a></li>
-              <li><button id='addUser' type='sumbit' ng-click="regi()" ng-show='authData' style="background-color: transparent">Add new user</button></li>
-              <li><button id='logout' type='sumbit' ng-click="logout()" ng-show='authData' style="background-color: transparent"><span>Logout</span></button></li>
-              <!-- <li><a id = 'user'>none</a></li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container">
     <div ng-view=""></div>
     </div>

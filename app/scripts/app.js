@@ -20,8 +20,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/events.html',
+        controller: 'EventsCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -31,10 +31,6 @@ angular
         templateUrl: 'views/register.html',
         controller: 'LoginCtrl'
       })
-      .when('/events', {
-        templateUrl: 'views/events.html',
-        controller: 'EventsCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
@@ -43,12 +39,12 @@ angular
   angular.module('krinaApp').run(function($rootScope){
     $rootScope.$on('$routeChangeStart', function(){
         var check = $rootScope.authData;
-        console.log('show:',check);
         if(!check) {
           window.location = '#/login';
-          console.log('pass');
         }
-        else { console.log('!pass');}
+        else {
+          window.location = '#/';
+        }
       }
     );
   });

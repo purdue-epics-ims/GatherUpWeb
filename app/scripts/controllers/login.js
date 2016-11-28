@@ -29,7 +29,6 @@ angular.module('krinaApp')
       } else{
        console.log('Authenticated successfully!', authData);
        window.location = '#/main';
-       location.reload();
      }
    });
   };
